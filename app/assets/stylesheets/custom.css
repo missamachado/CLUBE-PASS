@@ -1,0 +1,13 @@
+.navbar {
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
