@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :reviews
+  resources :orders
+  resources :offers
   devise_for :users
   root 'pages#home'
   get '/offers', to: 'offers#index'
