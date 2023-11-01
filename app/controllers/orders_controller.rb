@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
+    @orders = Order.find(params[:id])
   end
 
   # GET /orders/new
@@ -65,6 +66,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:user_id, :offer_id)
+      params.require(:order).permit(:user_id, :club_pass_id)
     end
 end
