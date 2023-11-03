@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1 or /reviews/1.json
   def show
+    @reviews = Review.find(params[:id])
   end
 
   # GET /reviews/new
@@ -65,6 +66,6 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:user_id, :offer_id, :text, :rating)
+      params.require(:review).permit(:order_id, :content, :rating)
     end
 end

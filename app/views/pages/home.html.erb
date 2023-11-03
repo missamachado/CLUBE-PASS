@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +43,18 @@
             </ul>
         </section>
     </div>
+<h1>Welcome to CLUBE-PASS!</h1>
 
+  <% if user_signed_in? %>
+    <p>Welcome, <%= current_user.email %></p>
+     <%= link_to "browse clube_pass", club_passes_path %>
+    <%= link_to "browse my orders", orders_path %>
+    <%= link_to "logout", destroy_user_session_path, data: {turbo_method: :delete} %>
+  <% else %>
+    <p>Please sign up or log in to continue.</p>
+    <%= link_to "sign up", new_user_registration_path %>
+    <%= link_to "login", new_user_session_path %>
+  <% end %>
     <div class="container">
     <p style="color: green"><%= notice %></p>
 
@@ -80,3 +92,4 @@
     </footer>
 </body>
 </html>
+

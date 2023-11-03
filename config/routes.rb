@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
   resources :flats
   resources :club_passes do
-    resources :orders do
+    resources :orders, only: %i[new create edit update] do
       resources :reviews
     end
   end
   devise_for :users
   root 'pages#home'
-
-  # Orders routes
-  get '/orders', to: 'orders#index'
+  resources :orders, only: %i[index show destroy]
 end

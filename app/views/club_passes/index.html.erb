@@ -1,0 +1,8 @@
+<h1>list of club passes</h1>
+<%= link_to "add new club pass", new_club_pass_path  %>
+<ul>
+  <% @club_passes.each do |club_pass| %>
+    <li><%= link_to club_pass.category, club_pass%></li>
+  <% end %>
+
+</ul>
