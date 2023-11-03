@@ -4,6 +4,13 @@ class FlatsController < ApplicationController
   # GET /flats or /flats.json
   def index
     @flats = Flat.all
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {flat: flat}),
+        marker_html: render_to_string(partial: "marker",locals: {flat: flat})
+      }
   end
 
   # GET /flats/1 or /flats/1.json
@@ -57,7 +64,6 @@ class FlatsController < ApplicationController
     end
   end
 
-  private
     # Use callbacks to share common setup or constraints between actions.
     def set_flat
       @flat = Flat.find(params[:id])
@@ -67,4 +73,5 @@ class FlatsController < ApplicationController
     def flat_params
       params.require(:flat).permit(:name, :address)
     end
+  end
 end
