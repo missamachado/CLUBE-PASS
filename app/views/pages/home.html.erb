@@ -1,3 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>My Colorful Landing Page</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Clube Pass</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Packages</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
+        <section class="main-content">
+            <h2>Packages</h2>
+            <p>At Clube Pass you can find the closest clube to spend your summer days with your family.
+</p>
+        </section>
+    </div>
+
+    <div class="container">
+        <section class="services">
+            <h2>Choose your pass</h2>
+            <ul>
+                <li>Day Pass</li>
+                <li>Monthly Pass</li>
+                <li>Make your own pass</li>
+            </ul>
+        </section>
+    </div>
 <h1>Welcome to CLUBE-PASS!</h1>
 
   <% if user_signed_in? %>
@@ -10,3 +55,41 @@
     <%= link_to "sign up", new_user_registration_path %>
     <%= link_to "login", new_user_session_path %>
   <% end %>
+    <div class="container">
+    <p style="color: green"><%= notice %></p>
+
+<h1>Flats</h1>
+
+<div id="flats">
+  <% @flats.each do |flat| %>
+    <%= render flat %>
+    <p>
+      <%= link_to "Show this flat", flat %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New flat", new_flat_path %>
+
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
+
+    <div class="container">
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <p>Email: clubepass@gmail.com</p>
+            <p>Phone: (000) 00000</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Write a review</p>
+        </div>
+    </footer>
+</body>
+</html>
+

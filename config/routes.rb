@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :flats
   resources :club_passes do
     resources :orders, only: %i[new create edit update] do
       resources :reviews
