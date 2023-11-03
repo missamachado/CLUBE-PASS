@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_club_pass, only: %i[ new create edit update]
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.where(user: current_user)
   end
 
   # GET /orders/1 or /orders/1.json
@@ -22,15 +23,15 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = Order.new
+    @order.user = current_user
+    @order.club_pass = @club_pass
 
     respond_to do |format|
       if @order.save
         format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
-        format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -64,8 +65,12 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
     end
 
+    def set_club_pass
+      @club_pass = ClubPass.find(params[:club_pass_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:user_id, :club_pass_id)
+      params.require(:order).permit()
     end
 end

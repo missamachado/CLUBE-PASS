@@ -13,16 +13,17 @@ class ClubPassesController < ApplicationController
 
   def create
     @club_pass = ClubPass.new(club_pass_params)
-    if club_pass.save
-      redirect_to @club_pass
+    @club_pass.user = current_user
+    if @club_pass.save
+      redirect_to club_passes_path
     else
       render 'new'
     end
-end
+  end
 
-private
+  private
 
-def club_pass_params
-  params.require(:club_pass).permit(:category, :description, :price, :start_date, :end_date, :seller_id)
-end
+  def club_pass_params
+    params.require(:club_pass).permit(:category, :description, :price, :start_date, :end_date)
+  end
 end

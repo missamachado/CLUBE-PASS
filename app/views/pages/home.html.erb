@@ -1,58 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>My Colorful Landing Page</title>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Clube Pass</h1>
-        </header>
+<h1>Welcome to CLUBE-PASS!</h1>
 
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Packages</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <div class="container">
-        <section class="main-content">
-            <h2>Packages</h2>
-            <p>At Clube Pass you can find the closest clube to spend your summer days with your family.
-</p>
-        </section>
-    </div>
-
-    <div class="container">
-        <section class="services">
-            <h2>Choose your pass</h2>
-            <ul>
-                <li>Day Pass</li>
-                <li>Monthly Pass</li>
-                <li>Make your own pass</li>
-            </ul>
-        </section>
-    </div>
-
-    <div class="container">
-        <section class="contact">
-            <h2>Contact Us</h2>
-            <p>Email: clubepass@gmail.com</p>
-            <p>Phone: (000) 00000</p>
-        </section>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; Write a review</p>
-        </div>
-    </footer>
-</body>
-</html>
+  <% if user_signed_in? %>
+    <p>Welcome, <%= current_user.email %></p>
+     <%= link_to "browse clube_pass", club_passes_path %>
+    <%= link_to "browse my orders", orders_path %>
+    <%= link_to "logout", destroy_user_session_path, data: {turbo_method: :delete} %>
+  <% else %>
+    <p>Please sign up or log in to continue.</p>
+    <%= link_to "sign up", new_user_registration_path %>
+    <%= link_to "login", new_user_session_path %>
+  <% end %>
