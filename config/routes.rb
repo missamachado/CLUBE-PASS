@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :flats
   resources :club_passes do
     resources :orders do
       resources :reviews
